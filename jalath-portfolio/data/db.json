@@ -113,27 +113,27 @@
       "id": "cs50x",
       "title": "CS50x: Introduction to Computer Science",
       "issuer": "Harvard University",
-      "date": "",
-      "credentialUrl": "",
-      "file": "",
+      "date": "24/03/2026",
+      "credentialUrl": "https://cs50.harvard.edu/certificates/82262214-3918-4569-8d0b-94a2a1b852a2",
+      "file": "/uploads/1784202931861-CS50x-certificate-1-.pdf",
       "note": "Upload the certificate from the admin dashboard."
     },
     {
       "id": "cs50-cybersecurity",
       "title": "CS50's Introduction to Cybersecurity",
       "issuer": "Harvard University",
-      "date": "",
-      "credentialUrl": "",
-      "file": "",
+      "date": "18/06/2026",
+      "credentialUrl": "https://cs50.harvard.edu/certificates/a7b03604-5bf6-42c4-94b3-3c176f7f8376",
+      "file": "/uploads/1784203016870-CS50-Cybersecurity.pdf",
       "note": "Upload the certificate from the admin dashboard."
     },
     {
       "id": "cs50-sql",
       "title": "CS50's Introduction to Databases with SQL",
       "issuer": "Harvard University",
-      "date": "",
-      "credentialUrl": "",
-      "file": "",
+      "date": "27/03/2026",
+      "credentialUrl": "https://cs50.harvard.edu/certificates/3c83e8ea-90b3-4b8c-98eb-2c366a21dff0",
+      "file": "/uploads/1784203062629-CS50-SQL.pdf",
       "note": "Upload the certificate from the admin dashboard."
     }
   ],
