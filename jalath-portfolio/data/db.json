@@ -1,0 +1,141 @@
+{
+  "profile": {
+    "name": "Jalath Balagallage Tharusha Naveendra Balagalla",
+    "displayName": "Tharusha Naveendra",
+    "headline": "Computer Science Undergraduate | Cybersecurity, Data Science & AI Learner",
+    "intro": "I build practical software, explore secure systems, and continuously expand my knowledge across data science, machine learning and artificial intelligence.",
+    "about": "I am an undergraduate at Uva Wellassa University of Sri Lanka, following the B.Sc. Honours degree in Computer Science and Technology. Alongside my university studies, I am developing my knowledge in cybersecurity, data science, machine learning and deep learning. I enjoy learning through hands-on projects, structured courses and collaborative university work.",
+    "birthday": "2003-09-03",
+    "university": "Uva Wellassa University of Sri Lanka",
+    "degree": "B.Sc. Honours in Computer Science and Technology",
+    "location": "Sri Lanka",
+    "email": "tharushanaveendra831@gmail.com",
+    "whatsapp": "+94743017426",
+    "githubUsername": "tharushanaveendra831-creator",
+    "availability": "Open to internships, collaborations and technology projects"
+  },
+  "skills": [
+    {
+      "name": "Python",
+      "level": 65,
+      "category": "Programming"
+    },
+    {
+      "name": "Java",
+      "level": 60,
+      "category": "Programming"
+    },
+    {
+      "name": "R Programming",
+      "level": 55,
+      "category": "Data"
+    },
+    {
+      "name": "C Programming",
+      "level": 58,
+      "category": "Programming"
+    },
+    {
+      "name": "JavaScript",
+      "level": 60,
+      "category": "Web"
+    },
+    {
+      "name": "SQL",
+      "level": 68,
+      "category": "Database"
+    },
+    {
+      "name": "Google Colab",
+      "level": 70,
+      "category": "Tools"
+    },
+    {
+      "name": "Git & GitHub",
+      "level": 60,
+      "category": "Tools"
+    }
+  ],
+  "focusAreas": [
+    "Cybersecurity",
+    "Data Science",
+    "Machine Learning",
+    "Deep Learning",
+    "Database Design",
+    "Full-Stack Development"
+  ],
+  "courses": [
+    {
+      "title": "CS50x: Introduction to Computer Science",
+      "status": "Completed",
+      "issuer": "Harvard University"
+    },
+    {
+      "title": "CS50's Introduction to Cybersecurity",
+      "status": "Completed",
+      "issuer": "Harvard University"
+    },
+    {
+      "title": "CS50's Introduction to Databases with SQL",
+      "status": "Completed",
+      "issuer": "Harvard University"
+    },
+    {
+      "title": "CS50's Introduction to Artificial Intelligence with Python",
+      "status": "In Progress",
+      "issuer": "Harvard University"
+    },
+    {
+      "title": "CS50's Introduction to Programming with Python",
+      "status": "In Progress",
+      "issuer": "Harvard University"
+    }
+  ],
+  "projects": [
+    {
+      "id": "disaster-relief-allocation-system",
+      "title": "Disaster Relief Allocation System",
+      "description": "A university group SQL project focused on designing and managing a structured database for disaster-relief allocation. I served as the team leader and contributed to database planning, SQL work and team coordination.",
+      "role": "Team Leader",
+      "technologies": [
+        "SQL",
+        "Database Design",
+        "Team Collaboration"
+      ],
+      "repoUrl": "",
+      "liveUrl": "",
+      "featured": true,
+      "image": ""
+    }
+  ],
+  "certificates": [
+    {
+      "id": "cs50x",
+      "title": "CS50x: Introduction to Computer Science",
+      "issuer": "Harvard University",
+      "date": "",
+      "credentialUrl": "",
+      "file": "",
+      "note": "Upload the certificate from the admin dashboard."
+    },
+    {
+      "id": "cs50-cybersecurity",
+      "title": "CS50's Introduction to Cybersecurity",
+      "issuer": "Harvard University",
+      "date": "",
+      "credentialUrl": "",
+      "file": "",
+      "note": "Upload the certificate from the admin dashboard."
+    },
+    {
+      "id": "cs50-sql",
+      "title": "CS50's Introduction to Databases with SQL",
+      "issuer": "Harvard University",
+      "date": "",
+      "credentialUrl": "",
+      "file": "",
+      "note": "Upload the certificate from the admin dashboard."
+    }
+  ],
+  "messages": []
+}

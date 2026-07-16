@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Portfolio Admin Dashboard</title>
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="admin-body">
+  <header class="admin-header">
+    <a class="brand" href="/"><span class="brand-mark">TN</span><span class="brand-text">Portfolio Admin</span></a>
+    <nav><a href="/" target="_blank">View website ↗</a><form action="/admin/logout" method="post"><button type="submit">Log out</button></form></nav>
+  </header>
+
+  <main class="admin-layout">
+    <aside class="admin-sidebar glass-card">
+      <p>Dashboard</p>
+      <a href="#overview">Overview</a>
+      <a href="#profile">Profile details</a>
+      <a href="#projects">Projects</a>
+      <a href="#certificates">Certificates</a>
+      <a href="#messages">Messages <span><%= data.messages.filter(message => !message.read).length %></span></a>
+    </aside>
+
+    <div class="admin-content">
+      <section id="overview" class="admin-section">
+        <div class="admin-title"><div><p class="eyebrow-text">Control centre</p><h1>Welcome, <%= data.profile.displayName %></h1></div><span class="live-pill">● Website live</span></div>
+        <div class="admin-stats">
+          <article class="glass-card"><span>Projects</span><strong><%= data.projects.length %></strong></article>
+          <article class="glass-card"><span>Certificates</span><strong><%= data.certificates.length %></strong></article>
+          <article class="glass-card"><span>Messages</span><strong><%= data.messages.length %></strong></article>
+          <article class="glass-card"><span>Unread</span><strong><%= data.messages.filter(message => !message.read).length %></strong></article>
+        </div>
+      </section>
+
+      <section id="profile" class="admin-section glass-card admin-panel">
+        <div class="panel-heading"><div><p>PROFILE</p><h2>Edit personal information</h2></div><span>Changes appear immediately</span></div>
+        <form action="/admin/profile" method="post" class="admin-form">
+          <div class="form-row"><label>Full name<input name="name" value="<%= data.profile.name %>" required></label><label>Display name<input name="displayName" value="<%= data.profile.displayName %>" required></label></div>
+          <label>Professional headline<input name="headline" value="<%= data.profile.headline %>"></label>
+          <label>Hero introduction<textarea name="intro" rows="3"><%= data.profile.intro %></textarea></label>
+          <label>About me<textarea name="about" rows="7"><%= data.profile.about %></textarea></label>
+          <div class="form-row"><label>Birthday<input type="date" name="birthday" value="<%= data.profile.birthday %>"></label><label>Location<input name="location" value="<%= data.profile.location %>"></label></div>
+          <label>University<input name="university" value="<%= data.profile.university %>"></label>
+          <label>Degree<input name="degree" value="<%= data.profile.degree %>"></label>
+          <div class="form-row"><label>Email<input type="email" name="email" value="<%= data.profile.email %>"></label><label>WhatsApp<input name="whatsapp" value="<%= data.profile.whatsapp %>"></label></div>
+          <label>GitHub username<input name="githubUsername" value="<%= data.profile.githubUsername %>"></label>
+          <label>Availability message<input name="availability" value="<%= data.profile.availability %>"></label>
+          <button class="button button-primary" type="submit">Save profile</button>
+        </form>
+      </section>
+
+      <section id="projects" class="admin-section">
+        <div class="panel-heading"><div><p>PROJECTS</p><h2>Manage portfolio work</h2></div><span><%= data.projects.length %> total</span></div>
+        <details class="glass-card add-panel">
+          <summary>＋ Add a new project</summary>
+          <form action="/admin/projects" method="post" enctype="multipart/form-data" class="admin-form">
+            <div class="form-row"><label>Project title<input name="title" required></label><label>Your role<input name="role" placeholder="Team Leader, Developer..."></label></div>
+            <label>Description<textarea name="description" rows="5" required></textarea></label>
+            <label>Technologies (comma separated)<input name="technologies" placeholder="SQL, Python, JavaScript"></label>
+            <div class="form-row"><label>GitHub repository URL<input type="url" name="repoUrl"></label><label>Live website URL<input type="url" name="liveUrl"></label></div>
+            <label>Project image<input type="file" name="image" accept="image/png,image/jpeg,image/webp"></label>
+            <label class="check-label"><input type="checkbox" name="featured"> Mark as featured</label>
+            <button class="button button-primary" type="submit">Add project</button>
+          </form>
+        </details>
+        <div class="admin-card-list">
+          <% data.projects.forEach(project => { %>
+            <details class="glass-card item-editor">
+              <summary><span><strong><%= project.title %></strong><small><%= project.role || 'Project' %></small></span><em>Edit</em></summary>
+              <form action="/admin/projects/<%= project.id %>" method="post" enctype="multipart/form-data" class="admin-form">
+                <div class="form-row"><label>Project title<input name="title" value="<%= project.title %>" required></label><label>Your role<input name="role" value="<%= project.role %>"></label></div>
+                <label>Description<textarea name="description" rows="5"><%= project.description %></textarea></label>
+                <label>Technologies<input name="technologies" value="<%= project.technologies.join(', ') %>"></label>
+                <div class="form-row"><label>Repository URL<input type="url" name="repoUrl" value="<%= project.repoUrl %>"></label><label>Live URL<input type="url" name="liveUrl" value="<%= project.liveUrl %>"></label></div>
+                <label>Replace image<input type="file" name="image" accept="image/png,image/jpeg,image/webp"><% if (project.image) { %><small>Current: <a href="<%= project.image %>" target="_blank">view image</a></small><% } %></label>
+                <label class="check-label"><input type="checkbox" name="featured" <%= project.featured ? 'checked' : '' %>> Featured project</label>
+                <div class="editor-actions"><button class="button button-primary" type="submit">Save changes</button></div>
+              </form>
+              <form action="/admin/projects/<%= project.id %>/delete" method="post" class="delete-form" onsubmit="return confirm('Delete this project?')"><button type="submit">Delete project</button></form>
+            </details>
+          <% }) %>
+        </div>
+      </section>
+
+      <section id="certificates" class="admin-section">
+        <div class="panel-heading"><div><p>CERTIFICATES</p><h2>Upload and update credentials</h2></div><span>PDF or image · max 10 MB</span></div>
+        <details class="glass-card add-panel">
+          <summary>＋ Add a new certificate</summary>
+          <form action="/admin/certificates" method="post" enctype="multipart/form-data" class="admin-form">
+            <div class="form-row"><label>Certificate title<input name="title" required></label><label>Issuer<input name="issuer" required></label></div>
+            <div class="form-row"><label>Date or year<input name="date" placeholder="2026"></label><label>Verification URL<input type="url" name="credentialUrl"></label></div>
+            <label>Note<input name="note" placeholder="Optional description"></label>
+            <label>Certificate file<input type="file" name="file" accept="application/pdf,image/png,image/jpeg,image/webp"></label>
+            <button class="button button-primary" type="submit">Add certificate</button>
+          </form>
+        </details>
+        <div class="admin-card-list">
+          <% data.certificates.forEach(certificate => { %>
+            <details class="glass-card item-editor">
+              <summary><span><strong><%= certificate.title %></strong><small><%= certificate.issuer %></small></span><em>Edit</em></summary>
+              <form action="/admin/certificates/<%= certificate.id %>" method="post" enctype="multipart/form-data" class="admin-form">
+                <div class="form-row"><label>Title<input name="title" value="<%= certificate.title %>" required></label><label>Issuer<input name="issuer" value="<%= certificate.issuer %>"></label></div>
+                <div class="form-row"><label>Date<input name="date" value="<%= certificate.date %>"></label><label>Verification URL<input type="url" name="credentialUrl" value="<%= certificate.credentialUrl %>"></label></div>
+                <label>Note<input name="note" value="<%= certificate.note %>"></label>
+                <label>Replace file<input type="file" name="file" accept="application/pdf,image/png,image/jpeg,image/webp"><% if (certificate.file) { %><small>Current: <a href="<%= certificate.file %>" target="_blank">view certificate</a></small><% } %></label>
+                <button class="button button-primary" type="submit">Save changes</button>
+              </form>
+              <form action="/admin/certificates/<%= certificate.id %>/delete" method="post" class="delete-form" onsubmit="return confirm('Delete this certificate?')"><button type="submit">Delete certificate</button></form>
+            </details>
+          <% }) %>
+        </div>
+      </section>
+
+      <section id="messages" class="admin-section">
+        <div class="panel-heading"><div><p>INBOX</p><h2>Website contact messages</h2></div><span><%= data.messages.filter(message => !message.read).length %> unread</span></div>
+        <% if (!data.messages.length) { %><div class="glass-card empty-state">No messages yet. New contact-form submissions will appear here.</div><% } %>
+        <div class="message-list">
+          <% data.messages.forEach(message => { %>
+            <article class="glass-card message-card <%= message.read ? '' : 'unread' %>">
+              <div class="message-head"><div><strong><%= message.subject %></strong><span>From <a href="mailto:<%= message.email %>"><%= message.name %> · <%= message.email %></a></span></div><time><%= new Date(message.createdAt).toLocaleString('en-GB') %></time></div>
+              <p><%= message.message %></p>
+              <div class="message-actions">
+                <a href="mailto:<%= message.email %>?subject=Re:%20<%= encodeURIComponent(message.subject) %>">Reply by email</a>
+                <% if (!message.read) { %><form action="/admin/messages/<%= message.id %>/read" method="post"><button type="submit">Mark as read</button></form><% } %>
+                <form action="/admin/messages/<%= message.id %>/delete" method="post" onsubmit="return confirm('Delete this message?')"><button class="danger-text" type="submit">Delete</button></form>
+              </div>
+            </article>
+          <% }) %>
+        </div>
+      </section>
+    </div>
+  </main>
+</body>
+</html>

@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Portfolio of <%= data.profile.name %>, Computer Science undergraduate at Uva Wellassa University of Sri Lanka.">
+  <meta name="theme-color" content="#07111f">
+  <title><%= data.profile.displayName %> | Computer Science Portfolio</title>
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body data-birthday="<%= data.profile.birthday %>">
+  <canvas id="particle-canvas" aria-hidden="true"></canvas>
+  <div class="ambient ambient-one" aria-hidden="true"></div>
+  <div class="ambient ambient-two" aria-hidden="true"></div>
+
+  <header class="site-header" id="top">
+    <a class="brand" href="#home" aria-label="Go to home">
+      <span class="brand-mark">TN</span>
+      <span class="brand-text"><%= data.profile.displayName %></span>
+    </a>
+    <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="main-nav" aria-label="Primary navigation">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#certificates">Certificates</a>
+      <a href="#contact">Contact</a>
+      <a class="nav-cta" href="https://github.com/<%= data.profile.githubUsername %>" target="_blank" rel="noreferrer">GitHub ↗</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero section" id="home">
+      <div class="hero-grid">
+        <div class="hero-copy reveal">
+          <div class="eyebrow"><span class="pulse-dot"></span> <%= data.profile.availability %></div>
+          <p class="hero-kicker">Hello, I am</p>
+          <h1><%= data.profile.name %></h1>
+          <div class="type-line" aria-label="Professional interests">
+            <span class="prompt">&gt;</span>
+            <span id="typewriter"></span><span class="cursor">_</span>
+          </div>
+          <p class="hero-intro"><%= data.profile.intro %></p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#projects">Explore my work <span>→</span></a>
+            <a class="button button-secondary" href="#contact">Contact me</a>
+          </div>
+          <div class="quick-links">
+            <a href="mailto:<%= data.profile.email %>"><span>✉</span><%= data.profile.email %></a>
+            <a href="https://wa.me/<%= data.profile.whatsapp.replace(/\D/g, '') %>" target="_blank" rel="noreferrer"><span>◉</span><%= data.profile.whatsapp %></a>
+          </div>
+        </div>
+
+        <div class="hero-visual reveal">
+          <div class="orbit orbit-one"></div>
+          <div class="orbit orbit-two"></div>
+          <div class="profile-frame tilt-card">
+            <div class="profile-glow"></div>
+            <img src="/assets/profile.png" alt="Portrait of <%= data.profile.name %>">
+            <div class="profile-overlay">
+              <span class="status-dot"></span>
+              <div><strong>Based in <%= data.profile.location %></strong><small>Building, learning, improving</small></div>
+            </div>
+          </div>
+          <div class="floating-chip chip-code">{ code }</div>
+          <div class="floating-chip chip-shield">◈ security</div>
+          <div class="floating-chip chip-data">⌁ data</div>
+        </div>
+      </div>
+
+      <div class="stats-grid reveal">
+        <article><strong data-counter="3">0</strong><span>Completed CS50 courses</span></article>
+        <article><strong data-counter="8">0</strong><span>Technical skills</span></article>
+        <article><strong data-counter="6">0</strong><span>Focus areas</span></article>
+        <article><strong id="dynamic-age">—</strong><span>Years old</span></article>
+      </div>
+    </section>
+
+    <section class="section" id="about">
+      <div class="section-heading reveal">
+        <span class="section-number">01</span>
+        <div><p class="eyebrow-text">Who I am</p><h2>About me</h2></div>
+      </div>
+      <div class="about-grid">
+        <article class="glass-card about-copy reveal">
+          <p class="lead"><%= data.profile.about %></p>
+          <div class="details-grid">
+            <div><span>University</span><strong><%= data.profile.university %></strong></div>
+            <div><span>Degree</span><strong><%= data.profile.degree %></strong></div>
+            <div><span>Birthday</span><strong><%= data.profile.birthday %></strong></div>
+            <div><span>Location</span><strong><%= data.profile.location %></strong></div>
+          </div>
+        </article>
+        <article class="terminal-card reveal" aria-label="Developer profile terminal">
+          <div class="terminal-bar"><span></span><span></span><span></span><small>profile.js</small></div>
+          <pre><code><span class="code-purple">const</span> developer = {
+  name: <span class="code-green">"<%= data.profile.displayName %>"</span>,
+  university: <span class="code-green">"UWU Sri Lanka"</span>,
+  role: <span class="code-green">"CS Undergraduate"</span>,
+  interests: [
+    <span class="code-green">"Cybersecurity"</span>,
+    <span class="code-green">"Data Science"</span>,
+    <span class="code-green">"Machine Learning"</span>,
+    <span class="code-green">"Deep Learning"</span>
+  ],
+  mindset: <span class="code-green">"Always learning"</span>
+};</code></pre>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="skills">
+      <div class="section-heading reveal">
+        <span class="section-number">02</span>
+        <div><p class="eyebrow-text">Technical toolkit</p><h2>Skills & focus areas</h2></div>
+      </div>
+      <div class="skills-layout">
+        <div class="skills-list glass-card reveal">
+          <% data.skills.forEach(skill => { %>
+            <div class="skill-row">
+              <div class="skill-meta"><strong><%= skill.name %></strong><span><%= skill.category %> · Intermediate</span></div>
+              <div class="skill-track"><span class="skill-fill" data-width="<%= skill.level %>"></span></div>
+              <em><%= skill.level %>%</em>
+            </div>
+          <% }) %>
+          <p class="skill-note">Skill percentages are a self-assessment and can be updated through the website's data file.</p>
+        </div>
+        <div class="focus-cloud reveal">
+          <% data.focusAreas.forEach((area, index) => { %>
+            <div class="focus-card tilt-card" style="--delay:<%= index * 0.08 %>s">
+              <span><%= String(index + 1).padStart(2, '0') %></span>
+              <strong><%= area %></strong>
+            </div>
+          <% }) %>
+        </div>
+      </div>
+    </section>
+
+    <section class="section learning-section" id="learning">
+      <div class="section-heading reveal">
+        <span class="section-number">03</span>
+        <div><p class="eyebrow-text">Continuous learning</p><h2>CS50 journey</h2></div>
+      </div>
+      <div class="timeline">
+        <% data.courses.forEach((course, index) => { %>
+          <article class="timeline-item reveal">
+            <div class="timeline-marker <%= course.status === 'Completed' ? 'complete' : 'progress' %>"><%= course.status === 'Completed' ? '✓' : '↻' %></div>
+            <div class="timeline-content glass-card">
+              <span class="course-status"><%= course.status %></span>
+              <h3><%= course.title %></h3>
+              <p><%= course.issuer %></p>
+            </div>
+          </article>
+        <% }) %>
+      </div>
+    </section>
+
+    <section class="section" id="projects">
+      <div class="section-heading reveal">
+        <span class="section-number">04</span>
+        <div><p class="eyebrow-text">Selected work</p><h2>Projects</h2></div>
+      </div>
+      <div class="project-grid">
+        <% data.projects.forEach((project, index) => { %>
+          <article class="project-card glass-card reveal <%= project.featured ? 'featured' : '' %>">
+            <div class="project-top">
+              <span class="project-index"><%= String(index + 1).padStart(2, '0') %></span>
+              <% if (project.featured) { %><span class="featured-tag">Featured project</span><% } %>
+            </div>
+            <% if (project.image) { %><img class="project-image" src="<%= project.image %>" alt="<%= project.title %>"><% } %>
+            <h3><%= project.title %></h3>
+            <p><%= project.description %></p>
+            <% if (project.role) { %><div class="project-role"><span>My role</span><strong><%= project.role %></strong></div><% } %>
+            <div class="tag-list"><% project.technologies.forEach(tech => { %><span><%= tech %></span><% }) %></div>
+            <div class="project-links">
+              <% if (project.repoUrl) { %><a href="<%= project.repoUrl %>" target="_blank" rel="noreferrer">Repository ↗</a><% } %>
+              <% if (project.liveUrl) { %><a href="<%= project.liveUrl %>" target="_blank" rel="noreferrer">Live demo ↗</a><% } %>
+            </div>
+          </article>
+        <% }) %>
+      </div>
+
+      <div class="github-panel glass-card reveal">
+        <div class="github-header">
+          <div><span class="github-icon">⌘</span><div><p>Live from GitHub</p><h3>@<%= data.profile.githubUsername %></h3></div></div>
+          <a href="https://github.com/<%= data.profile.githubUsername %>" target="_blank" rel="noreferrer">View profile ↗</a>
+        </div>
+        <div class="github-stats" id="github-stats"><span>Loading live profile data…</span></div>
+        <div class="repo-grid" id="github-repos"><div class="repo-skeleton"></div><div class="repo-skeleton"></div><div class="repo-skeleton"></div></div>
+      </div>
+    </section>
+
+    <section class="section" id="certificates">
+      <div class="section-heading reveal">
+        <span class="section-number">05</span>
+        <div><p class="eyebrow-text">Verified learning</p><h2>Certificates</h2></div>
+      </div>
+      <p class="section-description reveal">Certificates can be uploaded and updated through the secure admin dashboard without editing the page code.</p>
+      <div class="certificate-grid">
+        <% data.certificates.forEach((certificate, index) => { const isImage = /\.(png|jpe?g|webp)$/i.test(certificate.file || ''); %>
+          <article class="certificate-card glass-card tilt-card reveal">
+            <div class="certificate-preview <%= certificate.file ? '' : 'placeholder' %>">
+              <% if (certificate.file && isImage) { %>
+                <img src="<%= certificate.file %>" alt="<%= certificate.title %> certificate">
+              <% } else if (certificate.file) { %>
+                <span class="document-icon">PDF</span>
+              <% } else { %>
+                <span class="certificate-seal">✓</span>
+              <% } %>
+            </div>
+            <div class="certificate-body">
+              <span class="certificate-number">CERT / <%= String(index + 1).padStart(2, '0') %></span>
+              <h3><%= certificate.title %></h3>
+              <p><%= certificate.issuer %><% if (certificate.date) { %> · <%= certificate.date %><% } %></p>
+              <div class="certificate-actions">
+                <% if (certificate.file) { %><a href="<%= certificate.file %>" target="_blank" rel="noreferrer">View certificate ↗</a><% } %>
+                <% if (certificate.credentialUrl) { %><a href="<%= certificate.credentialUrl %>" target="_blank" rel="noreferrer">Verify ↗</a><% } %>
+                <% if (!certificate.file && !certificate.credentialUrl) { %><span><%= certificate.note || 'Certificate will be uploaded soon.' %></span><% } %>
+              </div>
+            </div>
+          </article>
+        <% }) %>
+      </div>
+    </section>
+
+    <section class="section contact-section" id="contact">
+      <div class="contact-shell reveal">
+        <div class="contact-copy">
+          <p class="eyebrow-text">Let us connect</p>
+          <h2>Have a project, internship or collaboration opportunity?</h2>
+          <p>Send a message through this website, email me directly, or start a WhatsApp conversation.</p>
+          <div class="contact-methods">
+            <a href="mailto:<%= data.profile.email %>"><span>✉</span><div><small>Email</small><strong><%= data.profile.email %></strong></div></a>
+            <a href="https://wa.me/<%= data.profile.whatsapp.replace(/\D/g, '') %>" target="_blank" rel="noreferrer"><span>◉</span><div><small>WhatsApp</small><strong><%= data.profile.whatsapp %></strong></div></a>
+            <a href="https://github.com/<%= data.profile.githubUsername %>" target="_blank" rel="noreferrer"><span>⌘</span><div><small>GitHub</small><strong>@<%= data.profile.githubUsername %></strong></div></a>
+          </div>
+        </div>
+        <form class="contact-form glass-card" id="contact-form">
+          <div class="form-row">
+            <label>Full name<input type="text" name="name" required minlength="2" maxlength="100" placeholder="Your name"></label>
+            <label>Email address<input type="email" name="email" required maxlength="180" placeholder="you@example.com"></label>
+          </div>
+          <label>Subject<input type="text" name="subject" maxlength="180" placeholder="Internship, project or collaboration"></label>
+          <label>Message<textarea name="message" required minlength="10" maxlength="3000" rows="6" placeholder="Tell me how we can work together..."></textarea></label>
+          <button class="button button-primary" type="submit">Send message <span>→</span></button>
+          <p class="form-status" id="form-status" role="status"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div><span class="brand-mark small">TN</span><p>Designed and built as a dynamic full-stack portfolio.</p></div>
+    <p>© <%= currentYear %> <%= data.profile.displayName %>. All rights reserved.</p>
+    <a href="#top">Back to top ↑</a>
+  </footer>
+
+  <script src="/js/main.js" defer></script>
+</body>
+</html>

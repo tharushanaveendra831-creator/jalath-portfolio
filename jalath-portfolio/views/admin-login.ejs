@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Portfolio Admin Login</title>
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="admin-body">
+  <main class="login-shell">
+    <a class="brand" href="/"><span class="brand-mark">TN</span><span class="brand-text">Portfolio</span></a>
+    <form class="login-card glass-card" action="/admin/login" method="post">
+      <span class="admin-badge">SECURE AREA</span>
+      <h1>Admin dashboard</h1>
+      <p>Manage profile details, projects, certificates and contact messages.</p>
+      <% if (error) { %><div class="alert error"><%= error %></div><% } %>
+      <label>Admin password<input type="password" name="password" required autofocus autocomplete="current-password" placeholder="Enter password"></label>
+      <button class="button button-primary" type="submit">Sign in →</button>
+      <a class="back-link" href="/">← Return to portfolio</a>
+    </form>
+  </main>
+</body>
+</html>
