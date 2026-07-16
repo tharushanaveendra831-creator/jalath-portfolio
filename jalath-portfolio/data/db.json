@@ -110,6 +110,15 @@
   ],
   "certificates": [
     {
+      "id": "ai-ml-engineer-stage-01-mrnl7c0j",
+      "title": "AI/ML Engineer - Stage 01",
+      "issuer": "Sri Lanka Institute of Information Technology",
+      "date": "06/05/2026",
+      "credentialUrl": "https://code.sliit.org/certificates/we4x9qhp6y",
+      "note": "I have completed Artificial Intelligence / Machine Learning Stage 1  - SLIIT Campus",
+      "file": "/uploads/1784211069320-Jalath-Balagallage-Tharusha-Naveendra-Balagalla-2026-05-06.pdf"
+    },
+    {
       "id": "cs50x",
       "title": "CS50x: Introduction to Computer Science",
       "issuer": "Harvard University",
